@@ -11,7 +11,47 @@ const createPost = async(data: Omit<Post, 'id'|'createdAt'|'updatedAt' | "author
     return result;
     
 }
+const getAllPost = async(payload: {
+    search: string | undefined
+    tags: string[] | []
+})=>{
+    const allPost = await prisma.post.findMany({
+        where:{
+           AND: [
+             {
+                OR:[
+                {
+                    title:{
+                contains: payload.search as string,
+                mode:"insensitive",
+                }
 
+            },
+            {
+                content:{
+                contains: payload.search as string,
+                mode:"insensitive",
+
+            }
+            },
+            {
+                tags: {
+                has: payload.search as string,
+                }
+            }
+            ],
+             },
+             {
+             tags:{
+                hasEvery: payload.tags as string[]
+            }
+           }
+           ]
+        }
+    });
+    return allPost;
+}
 export const postService = {
-    createPost
+    createPost,
+    getAllPost
 }
