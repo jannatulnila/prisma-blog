@@ -22,7 +22,7 @@ app.use("/comments", commentRouter)
 
 
 app.get('/', (req, res) => {
-    res.send('Hello, blog page!');
+    res.send('Hello, prisma blog page!');
 })
 
 export default app;
