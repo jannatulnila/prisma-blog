@@ -104,10 +104,15 @@ const updateComment = async(commentId: string, data:{content?:string, status?: C
    })
     
 }
+
+const moderateComment=async()=>{
+  
+}
 export const CommentService ={
     createComment,
     getCommentById,
     getCommentsByAuthor,
     deleteComment,
-    updateComment
+    updateComment,
+    moderateComment
 }
