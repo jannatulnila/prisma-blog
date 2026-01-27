@@ -96,5 +96,5 @@ export const CommentController = {
     getCommentsByAuthor,
     deleteComment,
     updateComment,
-    moderateComment
+    
 }

@@ -128,5 +128,5 @@ export const CommentService ={
     getCommentsByAuthor,
     deleteComment,
     updateComment,
-    moderateComment
+    
 }
