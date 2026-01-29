@@ -52,9 +52,10 @@ const deleteComment = async (req: Request, res: Response) => {
     const result = await CommentService.deleteComment(commentId as string, user?.id as string);
     res.status(200).json(result);
   } catch (error) {
+     const errorMessage = (error instanceof Error) ? error.message : "Comment delete failed!";
     return res.status(400).json({
       success: false,
-      error: "Comment delete failed!",
+      error: errorMessage,
       details: error
     });
   }
@@ -67,9 +68,10 @@ const updateComment = async (req: Request, res: Response) => {
     const result = await CommentService.updateComment(commentId as string, req.body, user?.id as string);
     res.status(200).json(result);
   } catch (error) {
+    const errorMessage = (error instanceof Error) ? error.message : "Comment update failed!";
     return res.status(400).json({
       success: false,
-      error: "Comment update failed!",
+      error: errorMessage,
       details: error
     });
   }
@@ -82,9 +84,10 @@ const moderateComment = async (req: Request, res: Response) => {
     const result = await CommentService.moderateComment(commentId as string,req.body);
     res.status(200).json(result);
   } catch (error) {
+     const errorMessage = (error instanceof Error) ? error.message : "Comment status update failed!" ;
     return res.status(400).json({
       success: false,
-      error: "Comment update failed!",
+      error: errorMessage,
       details: error
     });
   }
@@ -96,5 +99,5 @@ export const CommentController = {
     getCommentsByAuthor,
     deleteComment,
     updateComment,
-    
+    moderateComment
 }
