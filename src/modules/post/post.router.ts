@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response, Router }  from "express";
+import express, { NextFunction, Request, Response, Router } from "express";
 import { postController } from "./post.controller";
 import { UserRole } from "../../../generated/prisma/enums";
 import auth from "../../middleware/auth";
@@ -22,8 +22,18 @@ router.get(
 
 )
 
-router.post("/",
-     auth(UserRole.USER, UserRole.ADMIN),
-      postController.createPost)
+router.post(
+    "/",
+    auth(UserRole.USER, UserRole.ADMIN),
+    postController.createPost
+)
+
+router.patch(
+    "/:postId",
+    auth(UserRole.USER, UserRole.ADMIN),
+    postController.updatePost
+)
+
+
 
 export const postRouter: Router = router;
